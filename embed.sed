@@ -40,14 +40,15 @@ H
 }
 
 #-----------------------------------------------------------------------------#
-
-#-----------------------------------------------------------------------------#
 #
 # Write the embedded help target and recipe
 #
+# At the end of the input stream:
 #   1. Insert the help target and recipe start
-#   2. Print the hold buffer
-#   3. Close the embedded script
+#   2. Place the hold buffer into the pattern buffer
+#   3. Remove the leading new line character
+#   4. Print the hold buffer
+#   5. Close the embedded script and supply the target file
 #
 #-----------------------------------------------------------------------------#
 
