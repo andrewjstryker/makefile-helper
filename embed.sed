@@ -54,8 +54,6 @@ H
 
 $ {
 i\
-# Generated file, do not edit by hand
-i\
 .PHONY : help
 i\
 help : #' Generate this help message

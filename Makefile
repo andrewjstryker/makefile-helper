@@ -26,12 +26,22 @@ verify : #' Verify the build system and demostrate how to wrap comments for
 install : generate-help.awk #! Install this file to the system
 	install generate-help.awk /usr/local/bin
 
-remove : #! Remove the system file
-	rm -i /usr/local/bin/generate-help.awk
+clean : #' Remove generated files
+	rm -f help-target.makefile
 
 help : #' Generate this help message
 	@# beginning a command with '@' prevents Make from echoing
 	@awk -f generate-help.awk $(MAKEFILE_LIST)
+
+#-----------------------------------------------------------------------------#
+#
+# System targets
+#
+#-----------------------------------------------------------------------------#
+
+help-target.makefile : embed.sed generate-help.awk
+	echo "# Generated file, do not edit by hand" > $@
+	sed -f embed.sed generate-help.awk >> $@
 
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 #'
