@@ -68,6 +68,15 @@ i\
 }
 
 #-----------------------------------------------------------------------------#
+#
+# Suppress auto-printing
+#
+# sed automatically prints all input. We do not want this as we controlled the
+# output in the previous block. We can disable auto printing by requiring the
+# user to call with the -n flag. The second method is to delete the pattern
+# space. We take the latter approach as this imposes less burden on users.
+#
+#-----------------------------------------------------------------------------#
 
 d
 
