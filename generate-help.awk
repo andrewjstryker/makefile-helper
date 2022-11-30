@@ -1,9 +1,17 @@
 #! /usr/bin/env awk -f
-#
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+## generate-help.awk
+##
+# Makefile help generator
+# https://github.com/andrewjstryker/makefile-helper
+##
+##
 ## ANSI color codes:
-# clear = "\033[0m"
-# cyan = "\036[0m"
-# red = "\031[0m"
+## clear = "\033[0m"
+## cyan = "\036[0m"
+## red = "\031[0m"
+##
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
 BEGIN {
         # split fields from colon to either #' or #!
@@ -15,7 +23,6 @@ BEGIN {
 
 # full length help message
 /^#'/ {
-        # TODO: ensure compatible with BSD Awk
         printf("%s\n", gensub(/^#' ?(.*)$/, "\\1", "g", $0))
         next
 }
@@ -38,12 +45,14 @@ BEGIN {
 # normal targets
 /^[a-zA-Z_]+\s*:.*#'/ {
         printf("\t\033[36m%-15s\033[0m %s\n", $1, $2)
+        next
 }
 
 END {
         if (sudo) {
-                printf("\nTargets in \033[31mred\033[0m might require sudo.\n")
+                printf("\nTargets in \033[31mred\033[0m ")
+                printf("might require sudo.\n")
         }
 }
 
-# vim: et sts=8
+## vim: et sts=8
