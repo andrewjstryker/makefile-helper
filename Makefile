@@ -6,22 +6,21 @@
 #'
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
-# targets that are not files
-.PHONY: build display verify install help remove
+#-----------------------------------------------------------------------------#
+#
+# User friendly targets
+#
+#-----------------------------------------------------------------------------#
+
+.PHONY: default all make clean install help
 
 # define the default target explictly
-default : help # Notice that a regular comment, such as these ones, will not
+default : all # Notice that a regular comment, such as these ones, will not
 	# appear in the generated help message
 
-build : #' Build the package
-	echo "Build, package, build"
+all : embed #' Generate all derived files (currently only embed)
 
-display : #' Display the project README file
-	cat README.md
-
-verify : #' Verify the build system and demostrate how to wrap comments for
-	#' targets that require long explanations
-	echo "Just another example"
+embed : help-target.makefile #' Generate the embeddable target and recipe
 
 install : generate-help.awk #! Install this file to the system
 	install generate-help.awk /usr/local/bin
