@@ -50,7 +50,7 @@
 #    3. Delete lines to prevent auto-printing.
 #
 #
-# © 2022 Andrew Stryker <axs@sdf.org>
+# © 2023 Andrew Stryker <axs@sdf.org>
 #
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
