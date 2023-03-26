@@ -16,7 +16,7 @@
 #
 # Second, we using sed to make the transformation. Transforming text maps
 # directly to sed's strength and purpose of editing text streams. However, sed
-# does come with a few trade-offs.
+# does present a few trade-offs:
 #
 #   1. sed does not scale. Since we are able to describe the code
 #      transformations in three blocks of code (one of which is trivial), we
@@ -45,7 +45,7 @@
 #    1. Transform and append to the hold buffer all non-special comment lines
 #
 #    2. Place the hold buffer into the pattern buffer on the last line and
-#    remove the leading newline character.
+#       remove the leading newline character.
 #
 #    3. Delete lines to prevent auto-printing.
 #
@@ -107,7 +107,7 @@ i\
 #
 # sed automatically prints all input. We do not want this as we controlled the
 # output in the previous block. We can disable auto printing by requiring the
-# user to call with the -n flag. The second method is to delete the pattern
+# user to call with the -n flag. A different method is to delete the pattern
 # space. We take the latter approach as this imposes less burden on users.
 #
 #-----------------------------------------------------------------------------#
