@@ -89,9 +89,9 @@ H
 
 $ {
 i\
-.PHONY : help
+.PHONY: help
 i\
-help : #' Generate this help message
+help: #' Generate this help message
 i\
 \tawk ' \\
 g
