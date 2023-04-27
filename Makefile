@@ -32,7 +32,7 @@ default: all # Notice that a regular comment, such as these ones, will not
 
 all: embed #' Generate all derived files (currently only embed)
 
-embed: ${awk_src} #' Generate the embeddable target and recipe
+embed: ${embed_file} #' Generate the embeddable target and recipe
 
 install: #! Install this file to the system
 	install ${awk_src} /usr/local/bin
