@@ -5,6 +5,7 @@ This Makefile simplifies porting configuration to new systems.
 	[36mall            [0m  Generate all derived files (currently only embed)
 	[36membed          [0m  Generate the embeddable target and recipe
 	[31minstall        [0m  Install this file to the system
+	[36mtest           [0m  Run the test suite
 	[31mrelease        [0m  Place artifacts on GitHub
 	[36mclean          [0m  Remove generated files
 	[36mhelp           [0m  Generate this help message

@@ -12,7 +12,7 @@
 #
 #-----------------------------------------------------------------------------#
 
-.PHONY: default all make clean install help release
+.PHONY: default all make clean install help release test
 
 awk_src = generate-help.awk
 embed_file = help-target.makefile
@@ -36,6 +36,9 @@ embed: ${embed_file} #' Generate the embeddable target and recipe
 
 install: #! Install this file to the system
 	install ${awk_src} /usr/local/bin
+
+test: #' Run the test suite
+	./tests/bats/bin/bats ./tests/tests.bats
 
 release: all #! Place artifacts on GitHub
 	# find the most recent version tag
