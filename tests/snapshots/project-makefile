@@ -5,10 +5,11 @@ This Makefile simplifies porting configuration to new systems.
 	[36mall            [0m  Generate all derived files (currently only embed)
 	[36membed          [0m  Generate the embeddable target and recipe
 	[31minstall        [0m  Install this file to the system
+	[31mrelease        [0m  Place artifacts on GitHub
 	[36mclean          [0m  Remove generated files
 	[36mhelp           [0m  Generate this help message
 
 Please let me know if you find this project useful. Open an issue should
 something not work as expected or should you have an enhancement idea.
 
-Targets in [31mred[0m might require sudo.
+Targets in [31mred[0m might require special priveleges.
