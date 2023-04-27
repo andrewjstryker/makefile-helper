@@ -60,8 +60,7 @@ help: #' Generate this help message
 #-----------------------------------------------------------------------------#
 
 ${embed_file}: embed.sed ${awk_src}
-	echo "# Generated file, do not edit by hand" > $@
-	sed -f $< ${awk_src} >> $@
+	sed -f $< ${awk_src} > $@
 
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 #'
