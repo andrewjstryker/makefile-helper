@@ -17,8 +17,8 @@ BEGIN {
         # split fields from colon to either #' or #!
         FS = ":.*#['!]"
 
-        # track if any targets require sudo privileges
-        sudo = 0
+        # track if any targets require special privileges
+        special = 0
 }
 
 # full length help message
@@ -38,7 +38,7 @@ BEGIN {
 # targets that might require elevated priveleges
 /^[a-zA-Z_]+\s*:.*#!/ {
         printf("\t\033[31m%-15s\033[0m %s\n", $1, $2)
-        sudo = 1
+        special = 1
         next
 }
 
@@ -49,9 +49,9 @@ BEGIN {
 }
 
 END {
-        if (sudo) {
+        if (special) {
                 printf("\nTargets in \033[31mred\033[0m ")
-                printf("might require sudo.\n")
+                printf("might require special priveleges.\n")
         }
 }
 
