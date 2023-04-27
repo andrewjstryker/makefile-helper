@@ -8,11 +8,23 @@
 
 #-----------------------------------------------------------------------------#
 #
-# User friendly targets
+# Makefile configuration
 #
 #-----------------------------------------------------------------------------#
 
-.PHONY: default all make clean install help
+.PHONY: default all make clean install help release
+
+awk_src = generate-help.awk
+embed_file = help-target.makefile
+generated_files = ${embed_file}
+
+release_artifacts = ${awk_src} ${embed_file}
+
+#-----------------------------------------------------------------------------#
+#
+# User interface
+#
+#-----------------------------------------------------------------------------#
 
 # define the default target explictly
 default: all # Notice that a regular comment, such as these ones, will not
@@ -20,27 +32,33 @@ default: all # Notice that a regular comment, such as these ones, will not
 
 all: embed #' Generate all derived files (currently only embed)
 
-embed: help-target.makefile #' Generate the embeddable target and recipe
+embed: ${awk_src} #' Generate the embeddable target and recipe
 
-install: generate-help.awk #! Install this file to the system
-	install generate-help.awk /usr/local/bin
+install: #! Install this file to the system
+	install ${awk_src} /usr/local/bin
+
+release: all #! Place artifacts on GitHub
+	# find the most recent version tag
+	tag=$$(git tag --list 'v*' | head -1); \
+	echo "Creating a release for version $${tag}"; \
+	gh release create $${tag} ${release_artifacts}
 
 clean: #' Remove generated files
-	rm -f help-target.makefile
+	rm -f ${generated_files}
 
 help: #' Generate this help message
 	@# beginning a command with '@' prevents Make from echoing
-	@awk -f generate-help.awk $(MAKEFILE_LIST)
+	@awk -f ${awk_src} $(MAKEFILE_LIST)
 
 #-----------------------------------------------------------------------------#
 #
-# System targets
+# System-level interface
 #
 #-----------------------------------------------------------------------------#
 
-help-target.makefile: embed.sed generate-help.awk
+${embed_file}: embed.sed ${awk_src}
 	echo "# Generated file, do not edit by hand" > $@
-	sed -f embed.sed generate-help.awk >> $@
+	sed -f $< ${awk_src} >> $@
 
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 #'
