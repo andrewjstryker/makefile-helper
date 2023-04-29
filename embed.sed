@@ -93,7 +93,7 @@ i\
 i\
 help: #' Generate this help message
 i\
-\tawk ' \\
+\t@awk ' \\
 g
 s/^\n//
 p
