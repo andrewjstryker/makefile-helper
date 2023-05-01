@@ -34,4 +34,26 @@ setup() {
   rm -f $f
 }
 
+#-----------------------------------------------------------------------------#
+#
+# Test the testing Makefile
+#
+#-----------------------------------------------------------------------------#
+
+@test "Compare AWK output to the testing Makefile snapshot" {
+  f=$(mktemp -t testing-awk-makefile.XXXXXX)
+  make -f awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/testing-makefile
+  assert_success
+  rm -f $f
+}
+
+@test "Compare embedded ouput to testing snapshot" {
+  f=$(mktemp -t testing-embedded-outfile.XXXXXX)
+  make -f embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/testing-makefile
+  assert_success
+  rm -f $f
+}
+
 # vim: ft=bash
