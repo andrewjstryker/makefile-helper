@@ -1,37 +1,38 @@
 #! /usr/bin/env -S awk -f
-#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+##-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-##
 ## generate-help.awk
 ##
 # Makefile help generator
 # https://github.com/andrewjstryker/makefile-helper
 ##
+## NOTE: lines prefixed with '##' are *not* passed into the embedded version.
 ##
 ## ANSI color codes:
 ## clear = "\033[0m"
 ## cyan = "\036[0m"
 ## red = "\031[0m"
 ##
-#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+##-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-##
 
 BEGIN {
         # split fields from colon to either #- or #!
-        FS = ":.*#[-!]"
+        FS = ":.*#[>!]"
 
         # track if any targets require special privileges
         special = 0
 }
 
 # full length help message
-/^#-/ {
-        printf("%s\n", gensub(/^#- ?(.*)$/, "\\1", "g", $0))
+/^#>/ {
+        printf("%s\n", gensub(/^#> ?(.*)$/, "\\1", "g", $0))
         next
 }
 
 # continuation messages
-/^\t#-/ {
+/^\t#[>!]/ {
         printf("\t%17s%s\n",
                " ",
-               gensub(/^\t#- ?(.*)$/, "\\1", "g", $0))
+               gensub(/^\t#[>!] ?(.*)$/, "\\1", "g", $0))
         next
 }
 
@@ -43,7 +44,7 @@ BEGIN {
 }
 
 # normal targets
-/^[a-zA-Z_]+\s*:.*#-/ {
+/^[a-zA-Z_]+\s*:.*#>/ {
         printf("\t\033[36m%-15s\033[0m %s\n", $1, $2)
         next
 }
