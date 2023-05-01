@@ -34,10 +34,10 @@
 #
 #   3. End by passing the Makefile to AWK as the file argument.
 #
-#   4. Remove special comments that only make sense in the context of the
+#   4. Exclude special comments that only make sense in the context of the
 #      stand alone AWK file. Examples include the sha-bang (#!) and modeline
-#      (vim: sts=8). We define special comments as comments that start `##`,
-#      `#-`, or `#!`.
+#      (vim: sts=8). We define special comments as comments that start with
+#      `##` or `#!`.
 #
 # Meeting the last requirements requires us to use a somewhat advanced sed
 # feature, the hold buffer. The approach is as follows:
