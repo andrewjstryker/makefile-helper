@@ -19,7 +19,13 @@ PATH := ${PWD}/tests/bats/bin:${PATH}
 
 awk_src = generate-help.awk
 embed_file = help-target.makefile
-generated_files = ${embed_file}
+
+testing_stub = tests/stub.makefile
+testing_awk = tests/testing-awk.makefile
+testing_embed = tests/testing-embed.makefile
+testing = testing_awk testing_embed
+
+generated_files = ${embed_file} ${testing}
 
 release_artifacts = ${awk_src} ${embed_file}
 
@@ -33,14 +39,14 @@ release_artifacts = ${awk_src} ${embed_file}
 default: all # Notice that a regular comment, such as these ones, will not
 	# appear in the generated help message
 
-all: embed #> Generate all derived files (currently only embed)
+all: ${generated_files} #> Generate all derived files
 
 embed: ${embed_file} #> Generate the embeddable target and recipe
 
 install: #! Install this file to the system
 	install ${awk_src} /usr/local/bin
 
-test: #> Run the test suite
+test: ${testing} #> Run the test suite
 	./tests/tests.bats
 
 release: all #! Place artifacts on GitHub
@@ -64,6 +70,13 @@ help: #> Generate this help message
 
 ${embed_file}: embed.sed ${awk_src}
 	sed -f $< ${awk_src} > $@
+
+${testing_awk}: ${testing_stub} ${awk_src}
+	cat ${testing_stub} > $@
+	echo -e "\t@awk -f ../generate-help.awk \${MAKEFILE_LIST} >> $@
+
+${testing_embed}: ${testing_stub} ${embed_file}
+	cat ${embed_file} $< > $@
 
 #-----------------------------------------------------------------------------#
 #>

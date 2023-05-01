@@ -2,7 +2,7 @@ Example Makefile that is compatible with generate-help.awk
 
 This Makefile simplifies porting configuration to new systems.
 
-	[36mall            [0m  Generate all derived files (currently only embed)
+	[36mall            [0m  Generate all derived files
 	[36membed          [0m  Generate the embeddable target and recipe
 	[31minstall        [0m  Install this file to the system
 	[36mtest           [0m  Run the test suite
