@@ -15,7 +15,7 @@
 ##-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-##
 
 BEGIN {
-        # split fields from colon to either #- or #!
+        # split fields from colon to either #> or #!
         FS = ":.*#[>!]"
 
         # track if any targets require special privileges
