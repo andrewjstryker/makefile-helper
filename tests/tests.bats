@@ -26,7 +26,7 @@ setup() {
 #
 #-----------------------------------------------------------------------------#
 
-@test "Compare AWK file output to the project Makefile snapshot" {
+@test "Compare AWK output to the project Makefile snapshot" {
   f=$(mktemp -t project-makefile.XXXXXX)
   generate-help.awk ${DIR}/../Makefile > $f
   run diff $f ${DIR}/snapshots/project-makefile
