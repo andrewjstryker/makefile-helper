@@ -14,6 +14,9 @@
 
 .PHONY: default all make clean install help release test
 
+# Set PATH to use our version of BATS rather than the host system (if present)
+PATH := ${PWD}/tests/bats/bin:${PATH}
+
 awk_src = generate-help.awk
 embed_file = help-target.makefile
 generated_files = ${embed_file}
@@ -38,7 +41,7 @@ install: #! Install this file to the system
 	install ${awk_src} /usr/local/bin
 
 test: #> Run the test suite
-	./tests/bats/bin/bats ./tests/tests.bats
+	./tests/tests.bats
 
 release: all #! Place artifacts on GitHub
 	# find the most recent version tag
@@ -63,8 +66,8 @@ ${embed_file}: embed.sed ${awk_src}
 	sed -f $< ${awk_src} > $@
 
 #-----------------------------------------------------------------------------#
-#-
-#- Please let me know if you find this project useful. Open an issue should
-#- something not work as expected or should you have an enhancement idea.
+#>
+#> Please let me know if you find this project useful. Open an issue should
+#> something not work as expected or should you have an enhancement idea.
 #
 #-----------------------------------------------------------------------------#
