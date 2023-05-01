@@ -14,7 +14,7 @@ setup() {
 @test "Compare AWK file output to snapshot" {
   f=$(mktemp -t project-makefile.XXXXXX)
   generate-help.awk ${DIR}/../Makefile > $f
-  run cmp $f ${DIR}/snapshots/project-makefile
+  run diff $f ${DIR}/snapshots/project-makefile
   assert_success
   rm -f $f
 }
