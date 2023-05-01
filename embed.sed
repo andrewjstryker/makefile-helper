@@ -59,8 +59,8 @@
 # Transform the script for Makefile embedding
 #
 # Apply the following transformations to non-special comment lines:
-#   1. Escape single quote marks on non-comment lines
-#   2. Insert a tab before recipe commands
+#   1. Insert a tab before recipe commands
+#   2. Double every $ that prefixs a number so that Make does not consume it
 #   3. Escape the end of line
 #
 # Finally, append the transformed pattern buffer to the hold buffer.
@@ -70,6 +70,7 @@
 /^#[#-\!]/! {
 /^#/!s/'/\\'/g
 s/^/	/
+s/\(\$[[:digit:]]\)/$\1/g
 s/$/\\/
 H
 }
