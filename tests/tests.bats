@@ -1,4 +1,13 @@
 #!/usr/bin/env bats
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+#
+# Our testing strategy is to compare the results of `make help` to snapshots.
+# We test against two snapshots:
+#   1. Project `Makefile`--we need to be sure that the project works correctly
+#      against its own `Makefile`.
+#   2. Generated `Makefile`--we need a way to test the embedded version.
+#
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
 setup() {
   # store testing working directory
@@ -11,7 +20,13 @@ setup() {
   load test_helper/bats-assert/load
 }
 
-@test "Compare AWK file output to snapshot" {
+#-----------------------------------------------------------------------------#
+#
+# Test the project Makefile
+#
+#-----------------------------------------------------------------------------#
+
+@test "Compare AWK file output to the project Makefile snapshot" {
   f=$(mktemp -t project-makefile.XXXXXX)
   generate-help.awk ${DIR}/../Makefile > $f
   run diff $f ${DIR}/snapshots/project-makefile
