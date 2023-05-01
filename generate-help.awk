@@ -5,7 +5,10 @@
 # Makefile help generator
 # https://github.com/andrewjstryker/makefile-helper
 ##
-## NOTE: lines prefixed with '##' are *not* passed into the embedded version.
+## NOTES:
+##  1. Lines prefixed with '##' are *not* passed into the embedded version.
+##  2. The semicolons are required for the embedded
+#
 ##
 ## ANSI color codes:
 ## clear = "\033[0m"
