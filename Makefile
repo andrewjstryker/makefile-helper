@@ -38,7 +38,7 @@ embed: ${embed_file} #> Generate the embeddable target and recipe
 install: #! Install this file to the system
 	install ${awk_src} /usr/local/bin
 
-test: #> Run the test suite
+test: ${generated_files} #> Run the test suite
 	$(MAKE) -C tests
 
 release: all #! Place artifacts on GitHub
