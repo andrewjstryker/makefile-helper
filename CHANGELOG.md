@@ -16,3 +16,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 - MIT instead of BSD 3-Clause [(#2)](https://github.com/andrewjstryker/makefile-helper/issues/2)
 - Special comment delimiter [(#6)](https://github.com/andrewjstryker/makefile-helper/issues/6)
+
+### Fixed
+
+- Build issue for `make test`
+  [(#14)](https://github.com/andrewjstryker/makefile-helper/issues/14)
