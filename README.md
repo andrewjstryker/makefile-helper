@@ -13,6 +13,10 @@ directly into a `Makefile` as shown below:
     insert screen capture here
 -->
 
+<!--
+    TOC
+-->
+
 ## Usage
 
 As shown in the above animation, usage from the user's view point is `make
@@ -39,9 +43,15 @@ a help message:
 5. Check for targets that might require special privilege at exit and print a
    notice if some where encountered.
 
+<!--
+
+## Incorporating into to a `Makefile`
+
 ```sh
 Part of the generated help message
 ```
+
+-->
 
 ## Limitations
 
@@ -60,6 +70,9 @@ few limitations:
 
   * Lacks logic for handling multiple `#'` character sequences on a target
     line. If you do this, you are not really following the usage guidelines.
+
+  * Lacks visibility into the terminal background. If someone has a cyan or red
+    background, the targets will not be visible. 
 
 ## Installation
 
@@ -109,3 +122,7 @@ The author of this project has observed the following
 
   4. Providing build instructions via `make help` helps both users and
      developers.
+
+<!--
+    Collaborating
+-->
