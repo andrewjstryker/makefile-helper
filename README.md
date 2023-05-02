@@ -38,10 +38,10 @@ a help message:
    field is the help message.
 
 4. Split target lines at `#!`. The first field is a target that _might_ require
-   `sudo` and the second field is the help message.
+   special privilege and the second field is the help message.
 
-5. Check for `sudo` targets at exit and print a notice if some where
-   encountered.
+5. Check for targets that might require special privilege at exit and print a
+   notice if some where encountered.
 
 <!--
 

@@ -16,7 +16,7 @@
 #
 # Second, we using sed to make the transformation. Transforming text maps
 # directly to sed's strength and purpose of editing text streams. However, sed
-# does come with a few trade-offs.
+# does present a few trade-offs:
 #
 #   1. sed does not scale. Since we are able to describe the code
 #      transformations in three blocks of code (one of which is trivial), we
@@ -34,10 +34,10 @@
 #
 #   3. End by passing the Makefile to AWK as the file argument.
 #
-#   4. Remove special comments that only make sense in the context of the
+#   4. Exclude special comments that only make sense in the context of the
 #      stand alone AWK file. Examples include the sha-bang (#!) and modeline
-#      (vim: sts=8). We define special comments as comments that start `##`,
-#      `#-`, or `#!`.
+#      (vim: sts=8). We define special comments as comments that start with
+#      `##` or `#!`.
 #
 # Meeting the last requirements requires us to use a somewhat advanced sed
 # feature, the hold buffer. The approach is as follows:
@@ -45,12 +45,12 @@
 #    1. Transform and append to the hold buffer all non-special comment lines
 #
 #    2. Place the hold buffer into the pattern buffer on the last line and
-#    remove the leading newline character.
+#       remove the leading newline character.
 #
 #    3. Delete lines to prevent auto-printing.
 #
 #
-# © 2022 Andrew Stryker <axs@sdf.org>
+# © 2023 Andrew Stryker <axs@sdf.org>
 #
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
@@ -59,17 +59,18 @@
 # Transform the script for Makefile embedding
 #
 # Apply the following transformations to non-special comment lines:
-#   1. Escape single quote marks on non-comment lines
-#   2. Insert a tab before recipe commands
+#   1. Insert a tab before recipe commands
+#   2. Double every $ that prefixs a number so that Make does not consume it
 #   3. Escape the end of line
 #
 # Finally, append the transformed pattern buffer to the hold buffer.
 #
 #-----------------------------------------------------------------------------#
 
-/^#[#-\!]/! {
+/^#[#!]/! {
 /^#/!s/'/\\'/g
 s/^/	/
+s/\(\$[[:digit:]]\)/$\1/g
 s/$/\\/
 H
 }
@@ -89,11 +90,11 @@ H
 
 $ {
 i\
-.PHONY : help
+.PHONY: help
 i\
-help : #' Generate this help message
+help: #' Generate this help message
 i\
-\tawk ' \\
+\t@awk ' \\
 g
 s/^\n//
 p
@@ -107,7 +108,7 @@ i\
 #
 # sed automatically prints all input. We do not want this as we controlled the
 # output in the previous block. We can disable auto printing by requiring the
-# user to call with the -n flag. The second method is to delete the pattern
+# user to call with the -n flag. A different method is to delete the pattern
 # space. We take the latter approach as this imposes less burden on users.
 #
 #-----------------------------------------------------------------------------#
