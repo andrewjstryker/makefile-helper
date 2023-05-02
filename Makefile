@@ -1,9 +1,9 @@
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 #
-#' Example Makefile that is compatible with generate-help.awk
-#'
-#' This Makefile simplifies porting configuration to new systems.
-#'
+#> Example Makefile that is compatible with generate-help.awk
+#>
+#> This Makefile simplifies porting configuration to new systems.
+#>
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
 #-----------------------------------------------------------------------------#
@@ -12,10 +12,11 @@
 #
 #-----------------------------------------------------------------------------#
 
-.PHONY: default all make clean install help release
+.PHONY: default all make clean install help release test
 
 awk_src = generate-help.awk
 embed_file = help-target.makefile
+
 generated_files = ${embed_file}
 
 release_artifacts = ${awk_src} ${embed_file}
@@ -30,12 +31,15 @@ release_artifacts = ${awk_src} ${embed_file}
 default: all # Notice that a regular comment, such as these ones, will not
 	# appear in the generated help message
 
-all: embed #' Generate all derived files (currently only embed)
+all: ${generated_files} #> Generate all derived files
 
-embed: ${embed_file} #' Generate the embeddable target and recipe
+embed: ${embed_file} #> Generate the embeddable target and recipe
 
 install: #! Install this file to the system
 	install ${awk_src} /usr/local/bin
+
+test: #> Run the test suite
+	$(MAKE) -C tests
 
 release: all #! Place artifacts on GitHub
 	# find the most recent version tag
@@ -43,10 +47,11 @@ release: all #! Place artifacts on GitHub
 	echo "Creating a release for version $${tag}"; \
 	gh release create $${tag} ${release_artifacts}
 
-clean: #' Remove generated files
+clean: #> Remove generated files
 	rm -f ${generated_files}
+	$(MAKE) -C tests clean
 
-help: #' Generate this help message
+help: #> Generate this help message
 	@# beginning a command with '@' prevents Make from echoing
 	@awk -f ${awk_src} $(MAKEFILE_LIST)
 
@@ -57,12 +62,11 @@ help: #' Generate this help message
 #-----------------------------------------------------------------------------#
 
 ${embed_file}: embed.sed ${awk_src}
-	echo "# Generated file, do not edit by hand" > $@
-	sed -f $< ${awk_src} >> $@
+	sed -f $< ${awk_src} > $@
 
-#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
-#'
-#' Please let me know if you find this project useful. Open an issue should
-#' something not work as expected or should you have an enhancement idea.
+#-----------------------------------------------------------------------------#
+#>
+#> Please let me know if you find this project useful. Open an issue should
+#> something not work as expected or should you have an enhancement idea.
 #
-#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+#-----------------------------------------------------------------------------#
