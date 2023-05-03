@@ -21,10 +21,19 @@
 
 BEGIN {
         # split fields from colon to either #> or #!
-        FS = ":.*#[>!]";
+        FS = "(:.*#[>!]|#>|\?=)";
 
         # track if any targets require special privileges
         special = 0;
+
+        # track environment variables
+        env_counter = 0;
+}
+
+# environment variables
+/\?=.*#>/ {
+        env_counter += 1;
+        env_vars[env_counter] = sprintf("%s\t%s: %s\n", $1, $2, $3);
 }
 
 # full length help message
@@ -54,11 +63,28 @@ BEGIN {
         next;
 }
 
+# allow users to control the location of environment variables
+/^#env_vars:/ {
+        print_env();
+}
+
 END {
+        print_env();
+
         if (special) {
                 printf("\nTargets in \033[31mred\033[0m ");
                 printf("might require special priveleges.\n");
         }
 }
 
+function print_env() {
+        if (env_counter) {
+                printf("\nThis Makefile respects the following environment ");
+                printf("variables, shown with their values:\n\n");
+                for (i = 1; i <= env_counter; ++i) print env_vars[i];
+
+                # reset the counter to prevent duplication
+                env_counter = 0;
+        }
+}
 ## vim: et sts=8
