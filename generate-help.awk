@@ -12,15 +12,12 @@
 ##     AWK interpretter from becoming confused.
 #
 ##
-## ANSI color codes:
-## clear = "\033[0m"
-## cyan = "\036[0m"
-## red = "\031[0m"
+## ANSI color codes: https://en.wikipedia.org/wiki/ANSI_escape_code
 ##
 ##-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-##
 
 BEGIN {
-        # split fields from colon to either #> or #!
+        # split fields from colon to either #> or #!, just on #>, or ?=
         FS = "(:.*#[>!]|#>|\?=)";
 
         # track if any targets require special privileges
