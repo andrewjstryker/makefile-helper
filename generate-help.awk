@@ -5,7 +5,7 @@
 # Makefile help generator
 # https://github.com/andrewjstryker/makefile-helper
 ##
-## As we use this file as the source for generating a embeddd files, there
+## As we use this file as the source for generating embeded files, there
 ## a couple quirks:
 ##  1. Prefix lines with '##' to avoid passing them into the embedded version.
 ##  2. End non-comment lines with semicolons or closing braces to prevent the
