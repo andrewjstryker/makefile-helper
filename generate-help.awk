@@ -25,6 +25,7 @@ BEGIN {
 
         # track environment variables
         env_counter = 0;
+        env_section = 0;
 
         # string formats, collected here for easier editing
         normal_fmt       = "\t\033[36m%-15s\033[0m %s\n"
