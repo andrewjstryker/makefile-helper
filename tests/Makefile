@@ -35,7 +35,7 @@ generated_files = ${testing_awk} ${testing_embed}
 default: all
 
 all: test
-       
+
 awk: ${testing_awk}
 
 embed: ${testing_embed}
