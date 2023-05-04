@@ -110,4 +110,5 @@ function print_env() {
                 env_counter = 0;
         }
 }
+
 ## vim: et sts=8
