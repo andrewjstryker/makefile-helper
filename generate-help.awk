@@ -25,12 +25,37 @@ BEGIN {
 
         # track environment variables
         env_counter = 0;
+
+        # string formats, collected here for easier editing
+        normal_fmt       = "\t\033[36m%-15s\033[0m %s\n"
+        special_fmt      = "\t\033[31m%-15s\033[0m %s\n"
+        continuation_fmt = "\t%17s%s\n";
+        env_var_val      = "\033[37m%s \033[93m%s\033[0m";
+        env_var_fmt      = "\t%-15s %s\n";
 }
 
 # environment variables
 /\?=.*#>/ {
         env_counter += 1;
-        env_vars[env_counter] = sprintf("%s\t%s: %s\n", $1, $2, $3);
+        env_vars[env_counter] = sprintf(env_var_fmt,
+                sprintf(env_var_val, $1, $2),
+                $3);
+        env_section = 1;
+        next;
+}
+
+# continuation message within an environment variable block
+/^\t#[>!]/ {
+        env_counter += 1;
+        env_vars[env_counter] = sprintf(continuation_fmt,
+               " ",
+               gensub(/^\t#[>!] ?(.*)/, "\\1", "g", $0));
+        next;
+}
+
+# reset environment flag
+{
+        env_section = 0;
 }
 
 # full length help message
@@ -41,7 +66,7 @@ BEGIN {
 
 # continuation messages
 /^\t#[>!]/ {
-        printf("\t%17s%s\n",
+        printf(continuation_fmt,
                " ",
                gensub(/^\t#[>!] ?(.*)/, "\\1", "g", $0));
         next;
@@ -49,14 +74,14 @@ BEGIN {
 
 # targets that might require elevated priveleges
 /^[a-zA-Z_]+\s*:.*#!/ {
-        printf("\t\033[31m%-15s\033[0m %s\n", $1, $2);
+        printf(special_fmt, $1, $2);
         special = 1;
         next;
 }
 
 # normal targets
 /^[a-zA-Z_]+\s*:.*#>/ {
-        printf("\t\033[36m%-15s\033[0m %s\n", $1, $2);
+        printf(normal_fmt, $1, $2);
         next;
 }
 
