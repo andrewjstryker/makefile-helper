@@ -21,10 +21,6 @@ generated_files = ${embed_file}
 
 release_artifacts = ${awk_src} ${embed_file}
 
-# document environment variables
-TMPDIR ?= "/tmp" #> Set the temporary directory
-FOO ?= "foo" # not documented
-
 #-----------------------------------------------------------------------------#
 #
 # User interface
