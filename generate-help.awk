@@ -18,7 +18,7 @@
 
 BEGIN {
         # split fields from colon to either #> or #!, just on #>, or ?=
-        FS = "(:.*#[>!]|#>|\?=)";
+        FS = "(:.*#[>!]|#>|?=)";
 
         # track if any targets require special privileges
         special = 0;
@@ -104,7 +104,7 @@ function print_env() {
         if (env_counter) {
                 printf("\nThis Makefile respects the following environment ");
                 printf("variables, shown with their values:\n\n");
-                for (i = 1; i <= env_counter; ++i) print env_vars[i];
+                for (i = 1; i <= env_counter; ++i) printf("%s", env_vars[i]);
 
                 # reset the counter to prevent duplication
                 env_counter = 0;
