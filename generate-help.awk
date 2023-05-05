@@ -46,7 +46,7 @@ BEGIN {
 }
 
 # continuation message within an environment variable block
-/^\t#[>!]/ {
+env_section && /^\t#[>!]/ {
         env_counter += 1;
         env_vars[env_counter] = sprintf(continuation_fmt,
                " ",
