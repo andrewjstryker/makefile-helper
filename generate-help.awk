@@ -36,7 +36,7 @@ BEGIN {
 }
 
 # environment variables
-/\?=.*#>/ {
+/^[a-zA-Z0-9_]+\s\?=.*#>/ {
         env_counter += 1;
         env_vars[env_counter] = sprintf(env_var_fmt,
                 sprintf(env_var_val, $1, $2),
