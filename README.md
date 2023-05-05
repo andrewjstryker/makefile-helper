@@ -23,20 +23,28 @@ help`.
 `generate-help.awk` applies the following mutually exclusive rules to generate
 a help message:
 
-1. Place lines beginning with `#'` into the help message, after stripping the
-   leading `#'` plus up to one space.
+1. Place lines beginning with `#>` into the help message, after stripping the
+   leading `#>` plus up to one space.
 
-2. Transform lines with a leading tab character, `#`, and zero or one spaces by
-   placing only the text after the `#'` and up to one space into the help
-   message. E.g., `	#' text for help message`.
+2. Transform lines with a leading tab character, `#>`, and zero or one spaces by
+   placing only the text after the `#>` and up to one space into the help
+   message. E.g., `	#> text for help message`.
 
-3. Split target lines at `#'`. The first field is the target and the second
+3. Split target lines at `#>`. The first field is the target and the second
    field is the help message.
 
 4. Split target lines at `#!`. The first field is a target that _might_ require
    special privilege and the second field is the help message.
 
-5. Check for targets that might require special privilege at exit and print a
+5. Split environment variable line (i.e., the `?=` variable definition syntax
+   at `?=` and `#>` to document the variable, the default value, and document
+   the meaning.
+
+5. Flush environment variable documentation on lines that start with `#env`.
+
+6. Flush remaining environment variable definition at exit.
+
+7. Check for targets that might require special privilege at exit and print a
    notice if some where encountered.
 
 ```sh
@@ -58,7 +66,7 @@ few limitations:
     This is a bit of a corner case. One approach is to place the grouped target
     behind a `.PHONY` target. Then, document the abstraction.
 
-  * Lacks logic for handling multiple `#'` character sequences on a target
+  * Lacks logic for handling multiple `#>` character sequences on a target
     line. If you do this, you are not really following the usage guidelines.
 
 ## Installation
