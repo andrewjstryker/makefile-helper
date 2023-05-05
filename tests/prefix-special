@@ -1,0 +1,34 @@
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+#
+#> Makefile stub for testing purposes
+#>
+#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+
+#-----------------------------------------------------------------------------#
+#
+# Configuration
+#
+#-----------------------------------------------------------------------------#
+
+# document environment variables
+FOO ?= "foo" # not documented
+
+#-----------------------------------------------------------------------------#
+#
+# User interface
+#
+#-----------------------------------------------------------------------------#
+
+default: all # Notice that a regular comment, such as these ones, will not
+	# appear in the generated help message
+
+all: target1 target2 target3 #> Define three targets
+
+target1: foo #> Message for target 1
+	#> more help message
+
+target2: foo #! Message for target 2, with special privileges
+
+target3: foo #> Message for target 3
+
+help: #> Display this help message
