@@ -28,8 +28,8 @@ BEGIN {
         env_section = 0;
 
         # string formats, collected here for easier editing
-        normal_fmt       = "\t\033[36m%-15s\033[0m %s\n"
-        special_fmt      = "\t\033[31m%-15s\033[0m %s\n"
+        normal_fmt       = "\t\033[36m%-15s\033[0m %s\n";
+        special_fmt      = "\t\033[31m%-15s\033[0m %s\n";
         continuation_fmt = "\t%17s%s\n";
         env_var_val      = "\033[37m%s \033[93m%s\033[0m";
         env_var_fmt      = "\t%-15s %s\n";
@@ -74,14 +74,14 @@ env_section && /^\t#[>!]/ {
 }
 
 # targets that might require elevated priveleges
-/^[a-zA-Z_]+\s*:.*#!/ {
+/^[a-zA-Z0-9_]+\s*:.*#!/ {
         printf(special_fmt, $1, $2);
         special = 1;
         next;
 }
 
 # normal targets
-/^[a-zA-Z_]+\s*:.*#>/ {
+/^[a-zA-Z0-9_]+\s*:.*#>/ {
         printf(normal_fmt, $1, $2);
         next;
 }
