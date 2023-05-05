@@ -11,6 +11,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Test suite [(#6)](https://github.com/andrewjstryker/makefile-helper/issues/6)
+- Support for documenting environment variables
+  [(#9)](https://github.com/andrewjstryker/makefile-helper/issues/9) and
+  [(#8)](https://github.com/andrewjstryker/makefile-helper/issues/8)
 
 ### Changed
 
