@@ -36,7 +36,15 @@ a help message:
 4. Split target lines at `#!`. The first field is a target that _might_ require
    special privilege and the second field is the help message.
 
-5. Check for targets that might require special privilege at exit and print a
+5. Split environment variable line (i.e., the `?=` variable definition syntax
+   at `?=` and `#>` to document the variable, the default value, and document
+   the meaning.
+
+5. Flush environment variable documentation on lines that start with `#env`.
+
+6. Flush remaining environment variable definition at exit.
+
+7. Check for targets that might require special privilege at exit and print a
    notice if some where encountered.
 
 ```sh
