@@ -42,12 +42,13 @@ default: all
 all: test
 
 test: tests.bats ${makefile_tests} #> Run the test suite
-	bats $<
+	./bats/bin/bats $<
 
 clean: #> Remove generated files
 	rm -f ${makefile_tests}
 
 help: #> Display this help message
+	echo $${PATH}
 	@awk -f ${awk_src} ${MAKEFILE_LIST}
 
 #-----------------------------------------------------------------------------#
