@@ -1,4 +1,4 @@
-name: Verify correctness prior of main branch
+name: Test Suite
 run-name: Check by @${{ github.actor }}
 on: [ workflow_dispatch, push ]
 jobs:
