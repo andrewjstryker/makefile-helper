@@ -42,6 +42,7 @@ default: all
 all: test
 
 test: tests.bats ${makefile_tests} #> Run the test suite
+	echo $${PATH}
 	bats $<
 
 clean: #> Remove generated files
