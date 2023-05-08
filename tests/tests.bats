@@ -13,8 +13,8 @@ setup() {
   # store testing working directory
   DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
 
-  # place the bats executable on the path
-  PATH="${DIR}/bats/bin:${DIR}/..:${PATH}"
+  # place the AWK executable on the path
+  PATH="${DIR}/..:${PATH}"
 
   load test_helper/bats-support/load
   load test_helper/bats-assert/load
@@ -32,7 +32,7 @@ setup() {
   generate-help.awk ${DIR}/../Makefile > $f
   run diff $f ${DIR}/snapshots/project-makefile
   assert_success
-  [[ ${KEEP} = 0 ]] || rm -f $f
+  rm -f $f
 }
 
 #-----------------------------------------------------------------------------#
