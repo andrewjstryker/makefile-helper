@@ -2,7 +2,8 @@ run: Verify correctness prior of main branch
 run-name: Check by @${{ github.actor }}
 on:
   push:
-    - "main"
+    branch:
+      - "main"
 jobs:
   run-test-suite:
     runs-on: ubuntu-latest
