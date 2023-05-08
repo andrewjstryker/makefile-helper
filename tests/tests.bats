@@ -32,7 +32,7 @@ setup() {
   generate-help.awk ${DIR}/../Makefile > $f
   run diff $f ${DIR}/snapshots/project-makefile
   assert_success
-  [[ ${KEEP} = 0 ]] || rm -f $f
+  rm -f $f
 }
 
 #-----------------------------------------------------------------------------#
