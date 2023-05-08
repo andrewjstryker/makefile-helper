@@ -1,15 +1,10 @@
 name: Verify correctness prior of main branch
 run-name: Check by @${{ github.actor }}
-on:
-  push:
-    branch:
-      - "main"
+on: [ workflow_dispatch, push ]
 jobs:
   run-test-suite:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of this branch is ${{ github.ref }} and the repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
