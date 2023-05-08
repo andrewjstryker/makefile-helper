@@ -1,4 +1,4 @@
-run: Verify correctness prior of main branch
+name: Verify correctness prior of main branch
 run-name: Check by @${{ github.actor }}
 on:
   push:
