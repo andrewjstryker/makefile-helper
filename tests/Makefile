@@ -13,9 +13,6 @@
 
 .PHONY: clean all default test help
 
-# Set PATH to use our version of BATS rather than the host system (if present)
-PATH := ${PWD}/bats/bin:${PATH}
-
 # variables inherited from the project Makefile
 awk_src ?= ../generate-help.awk
 embed_file ?= ../help-target.makefile
