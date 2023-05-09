@@ -9,9 +9,7 @@ conventional `Makefile` in favor of other build systems. This project provides
 an alternative approach. This approach allows developers to write documentation
 directly into a `Makefile` as shown below:
 
-<!--
-    insert screen capture here
--->
+[![asciicast](https://asciinema.org/a/CnRerqtAqvfka2AyBR7eeZ1C4.svg)](https://asciinema.org/a/CnRerqtAqvfka2AyBR7eeZ1C4)
 
 ## Usage
 
@@ -47,15 +45,11 @@ a help message:
 7. Check for targets that might require special privilege at exit and print a
    notice if some where encountered.
 
-```sh
-Part of the generated help message
-```
-
 ## Limitations
 
-This is project aspires to be very light-weight. In essence, the code in the
-project boils down to a small number of AWK commands. As a result, there are a
-few limitations:
+This is project aspires to be light-weight. In essence, the code in the project
+boils down to a small number of AWK commands. As a result, there are a few
+limitations:
 
   * No formatting or line wrapping. While that is an approach that could be
     feasible (see `fmt(1)`), doing so would add an additional layer of
@@ -68,6 +62,9 @@ few limitations:
 
   * Lacks logic for handling multiple `#>` character sequences on a target
     line. If you do this, you are not really following the usage guidelines.
+
+  * Lacks visibility into the terminal background. If someone has a cyan or red
+    background, the targets will not be visible.
 
 ## Installation
 
@@ -101,7 +98,7 @@ chain. Further, the user can quickly get help about other tasks (such as
 building documentation).
 
 The `Makefile` is the traditional interface between programmers and the build
-system. They are also very general in that they understand targets,
+system. The `Makefile` is also very general in that it understands targets,
 dependencies, and recipes. This paradigm covers a lot of ground.
 
 The author of this project has observed the following
@@ -117,3 +114,30 @@ The author of this project has observed the following
 
   4. Providing build instructions via `make help` helps both users and
      developers.
+
+## Contributing
+
+Contributions are very much welcome! Please follow the Mozilla Foundations
+[Code of
+Conduct](https://www.mozilla.org/en-US/about/governance/policies/participation/).
+
+## Acknowledgements
+
+This work uses tools that were invented at Bell Labs in the 1970s:
+
+  * `Make`, written by [Stuart
+    Feldman](https://en.wikipedia.org/wiki/Stuart_Feldman)
+
+  * `awk`: written by [Alfred Aho, Peter Weinberger, and Brian
+    Kerninghan](https://en.wikipedia.org/wiki/AWK)
+
+  * `sed`: writte by [Lee E.
+    McMahon](https://en.wikipedia.org/wiki/Lee_E._McMahon)
+
+The work follows the principles of [literate
+programming](http://www.literateprogramming.com), as advocated by [Don
+Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+
+The idea of using Awk to generate help messages from a `Makefile` is not unique
+to this project. E.g., see the Alacritty's project
+[`Makefile`](https://github.com/alacritty/alacritty/blob/master/Makefile).
