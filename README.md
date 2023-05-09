@@ -47,9 +47,9 @@ a help message:
 
 ## Limitations
 
-This is project aspires to be very light-weight. In essence, the code in the
-project boils down to a small number of AWK commands. As a result, there are a
-few limitations:
+This is project aspires to be light-weight. In essence, the code in the project
+boils down to a small number of AWK commands. As a result, there are a few
+limitations:
 
   * No formatting or line wrapping. While that is an approach that could be
     feasible (see `fmt(1)`), doing so would add an additional layer of
@@ -98,7 +98,7 @@ chain. Further, the user can quickly get help about other tasks (such as
 building documentation).
 
 The `Makefile` is the traditional interface between programmers and the build
-system. They are also very general in that they understand targets,
+system. The `Makefile` is also very general in that it understands targets,
 dependencies, and recipes. This paradigm covers a lot of ground.
 
 The author of this project has observed the following
