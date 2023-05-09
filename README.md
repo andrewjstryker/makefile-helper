@@ -115,6 +115,23 @@ The author of this project has observed the following
   4. Providing build instructions via `make help` helps both users and
      developers.
 
-<!--
-    Collaborating
--->
+## Acknowledgements
+
+This work uses tools that were invented at Bell Labs in the 1970s:
+
+  * `Make`, written by [Stuart
+    Feldman](https://en.wikipedia.org/wiki/Stuart_Feldman)
+
+  * `awk`: written by [Alfred Aho, Peter Weinberger, and Brian
+    Kerninghan](https://en.wikipedia.org/wiki/AWK)
+
+  * `sed`: writte by [Lee E.
+    McMahon](https://en.wikipedia.org/wiki/Lee_E._McMahon)
+
+The work follows the principles of [literate
+programming](http://www.literateprogramming.com), as advocated by [Don
+Knuth](https://en.wikipedia.org/wiki/Donald_Knuth).
+
+The idea of using Awk to generate help messages from a `Makefile` is not unique
+to this project. E.g., see the Alacritty's project
+[`Makefile`](https://github.com/alacritty/alacritty/blob/master/Makefile).
