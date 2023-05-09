@@ -43,7 +43,7 @@ test: ${generated_files} #> Run the test suite
 
 release: all #! Place artifacts on GitHub
 	# find the most recent version tag
-	tag=$$(git tag --list 'v*' | head -1); \
+	tag=$$(git tag --list 'v*' | tail -1); \
 	echo "Creating a release for version $${tag}"; \
 	gh release create $${tag} ${release_artifacts}
 
