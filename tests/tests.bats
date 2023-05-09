@@ -5,7 +5,7 @@
 # We test against two snapshots:
 #   1. Project `Makefile`--we need to be sure that the project works correctly
 #      against its own `Makefile`.
-#   2. Generated `Makefile`--we need a way to test the embedded version.
+#   2. Generated `Makefile`s for all possible cominations
 #
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
@@ -13,11 +13,12 @@ setup() {
   # store testing working directory
   DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
 
-  # make executables in src/ visible to PATH
-  PATH="$DIR/..:$PATH"
+  # place the AWK executable on the path
+  PATH="${DIR}/..:${PATH}"
 
   load test_helper/bats-support/load
   load test_helper/bats-assert/load
+
 }
 
 #-----------------------------------------------------------------------------#
@@ -36,24 +37,137 @@ setup() {
 
 #-----------------------------------------------------------------------------#
 #
-# Test the testing Makefile
+# Test all cases
 #
 #-----------------------------------------------------------------------------#
 
-@test "Compare AWK output to the testing Makefile snapshot" {
-  f=$(mktemp -t testing-awk-makefile.XXXXXX)
-  make -f awk.makefile help | grep -v "^make" > $f
-  run diff $f ${DIR}/snapshots/testing-makefile
+@test "Compare embed ouptput for none and none" {
+  f=$(mktemp -t none-none-embed.XXXXXX)
+  make -f none-none-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/none-none
   assert_success
   rm -f $f
 }
 
-@test "Compare embedded ouput to testing snapshot" {
-  f=$(mktemp -t testing-embedded-outfile.XXXXXX)
-  make -f embed.makefile help | grep -v "^make" > $f
-  run diff $f ${DIR}/snapshots/testing-makefile
+@test "Compare embed ouptput for special and none" {
+  f=$(mktemp -t special-none-embed.XXXXXX)
+  make -f special-none-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/special-none
   assert_success
   rm -f $f
 }
+
+@test "Compare embed ouptput for env and none" {
+  f=$(mktemp -t env-none-embed.XXXXXX)
+  make -f env-none-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/env-none
+  assert_success
+  rm -f $f
+}
+
+@test "Compare embed ouptput for all and none" {
+  f=$(mktemp -t all-none-embed.XXXXXX)
+  make -f all-none-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/all-none
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for none and none" {
+  f=$(mktemp -t none-none-awk.XXXXXX)
+  make -f none-none-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/none-none
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for special and none" {
+  f=$(mktemp -t special-none-awk.XXXXXX)
+  make -f special-none-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/special-none
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for env and none" {
+  f=$(mktemp -t env-none-awk.XXXXXX)
+  make -f env-none-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/env-none
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for all and none" {
+  f=$(mktemp -t all-none-awk.XXXXXX)
+  make -f all-none-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/all-none
+  assert_success
+  rm -f $f
+}
+
+@test "Compare embed ouptput for none and env" {
+  f=$(mktemp -t none-env-embed.XXXXXX)
+  make -f none-env-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/none-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare embed ouptput for special and env" {
+  f=$(mktemp -t special-env-embed.XXXXXX)
+  make -f special-env-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/special-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare embed ouptput for env and env" {
+  f=$(mktemp -t env-env-embed.XXXXXX)
+  make -f env-env-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/env-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare embed ouptput for all and env" {
+  f=$(mktemp -t all-env-embed.XXXXXX)
+  make -f all-env-embed.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/all-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for none and env" {
+  f=$(mktemp -t none-env-awk.XXXXXX)
+  make -f none-env-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/none-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for special and env" {
+  f=$(mktemp -t special-env-awk.XXXXXX)
+  make -f special-env-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/special-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for env and env" {
+  f=$(mktemp -t env-env-awk.XXXXXX)
+  make -f env-env-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/env-env
+  assert_success
+  rm -f $f
+}
+
+@test "Compare AWK ouptput for all and env" {
+  f=$(mktemp -t all-env-awk.XXXXXX)
+  make -f all-env-awk.makefile help | grep -v "^make" > $f
+  run diff $f ${DIR}/snapshots/all-env
+  assert_success
+  rm -f $f
+}
+
 
 # vim: ft=bash
