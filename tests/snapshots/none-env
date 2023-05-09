@@ -1,0 +1,9 @@
+Makefile stub for testing purposes
+
+	[36mall            [0m  Define three targets
+	[36mtarget1        [0m  Message for target 1
+	[36mtarget2        [0m  Message for target 2, with special privileges
+	                 more help message
+	[36mtarget3        [0m  Message for target 3
+	[36mhelp           [0m  Display this help message
+Suffix for testing Makefiles
