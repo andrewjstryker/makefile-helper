@@ -115,6 +115,12 @@ The author of this project has observed the following
   4. Providing build instructions via `make help` helps both users and
      developers.
 
+## Contributing
+
+Contributions are very much welcome! Please follow the Mozilla Foundations
+[Code of
+Conduct](https://www.mozilla.org/en-US/about/governance/policies/participation/).
+
 ## Acknowledgements
 
 This work uses tools that were invented at Bell Labs in the 1970s:
