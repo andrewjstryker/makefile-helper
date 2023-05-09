@@ -45,16 +45,6 @@ a help message:
 7. Check for targets that might require special privilege at exit and print a
    notice if some where encountered.
 
-<!--
-
-## Incorporating into to a `Makefile`
-
-```sh
-Part of the generated help message
-```
-
--->
-
 ## Limitations
 
 This is project aspires to be very light-weight. In essence, the code in the
