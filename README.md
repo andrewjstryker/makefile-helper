@@ -64,7 +64,7 @@ limitations:
     line. If you do this, you are not really following the usage guidelines.
 
   * Lacks visibility into the terminal background. If someone has a cyan or red
-    background, the targets will not be visible. 
+    background, the targets will not be visible.
 
 ## Installation
 
