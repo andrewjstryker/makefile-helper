@@ -9,7 +9,7 @@ conventional `Makefile` in favor of other build systems. This project provides
 an alternative approach. This approach allows developers to write documentation
 directly into a `Makefile` as shown below:
 
-![Demonstration](demo.gif)
+![Demonstration](demo.mp4)
 
 ## Usage
 
