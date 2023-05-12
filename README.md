@@ -9,7 +9,7 @@ conventional `Makefile` in favor of other build systems. This project provides
 an alternative approach. This approach allows developers to write documentation
 directly into a `Makefile` as shown below:
 
-[![asciicast](https://asciinema.org/a/Km4Yn3posIbxdAvvM0Gfdx9Ng.svg)](https://asciinema.org/a/Km4Yn3posIbxdAvvM0Gfdx9Ng)
+[![asciicast](https://asciinema.org/a/Km4Yn3posIbxdAvvM0Gfdx9Ng.svg)](https://asciinema.org/a/Km4Yn3posIbxdAvvM0Gfdx9Ng?speed=2&theme=solarized-dark)
 
 ## Usage
 
