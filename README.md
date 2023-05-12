@@ -1,3 +1,5 @@
+![test status](https://github.com/andrewjstryker/makefile-helper/actions/workflows/run-tests.yaml/badge.svg)
+
 # `Makefile` help generator
 
 Create a help message from a self-documented `Makefile`
