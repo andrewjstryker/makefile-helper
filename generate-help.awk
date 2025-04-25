@@ -74,14 +74,14 @@ env_section && /^\t#[>!]/ {
 }
 
 # targets that might require elevated priveleges
-/^[a-zA-Z0-9_]+\s*:.*#!/ {
+/^[^[:space:]:]+([[:space:]]+[^[:space:]:]+)*[[:space:]]*:.*#!/ {
         printf(special_fmt, $1, $2);
         special = 1;
         next;
 }
 
 # normal targets
-/^[a-zA-Z0-9_]+\s*:.*#>/ {
+/^[^[:space:]:]+([[:space:]]+[^[:space:]:]+)*[[:space:]]*:.*#>/ {
         printf(normal_fmt, $1, $2);
         next;
 }
